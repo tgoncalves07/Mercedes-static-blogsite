@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      .grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 5px;
+        padding: 20px;
+      }
+      h2 {
+        text-align: center;
+        color: #00d2be;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 0 auto;
+        background-color: #fff;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      }
+      th,
+      td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: center;
+      }
+      th {
+        background-color: #00d2be;
+        color: white;
+      }
+      tr:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+      tr:hover {
+        background-color: #ddd;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="grid">
+      <div class="table-container">
+        <h2>Classificação de Equipes</h2>
+        <table border="1">
+          <thead>
+            <tr>
+              <th>Pos</th>
+              <th>Equipe</th>
+              <th>Pontos</th>
+            </tr>
+          </thead>
+          <tbody id="tabela-equipes"></tbody>
+        </table>
+        <br />
+        <img
+          src="F/carros2024.png"
+          alt="carros2024"
+          style="display: inline-block; margin-right: 20px"
+        />
+      </div>
+      <div class="container">
+        <h2>Classificação de Pilotos</h2>
+        <table border="1">
+          <thead>
+            <tr>
+              <th>Lugar</th>
+              <th>Nome</th>
+              <th>Pais</th>
+              <th>Equipa</th>
+              <th>Pontos</th>
+            </tr>
+          </thead>
+          <tbody id="corpo-tabela"></tbody>
+        </table>
+      </div>
+    </div>
+    <img src="f/pilotos.png" alt="" style="width: 50%; margin: auto" />
+    <h2>Noticias de F1 ao minuto</h2>
+    <div style="display: flex; justify-content: center; align-items: center">
+      <iframe
+        src="https://motorsport.uol.com.br/f1/news/"
+        frameborder="0"
+        style="width: 75%; height: 500px"
+      ></iframe>
+    </div>
+    <script>
+      const pilotos = [
+        {
+          lugar: 19,
+          nome: "Jack Doohan",
+          pais: "Australia",
+          equipa: "Renault Alpine",
+          pontos: 0,
+        },
+        {
+          lugar: 20,
+          nome: "Pierre Gasly",
+          pais: "França",
+          equipa: "Renault Alpine",
+          pontos: 0,
+        },
+        {
+          lugar: 18,
+          nome: "Fernando Alonso",
+          pais: "Espanha",
+          equipa: "Aston Martin",
+          pontos: 0,
+        },
+        {
+          lugar: 8,
+          nome: "Lance Stroll",
+          pais: "Canada",
+          equipa: "Aston Martin",
+          pontos: 10,
+        },
+        {
+          lugar: 10,
+          nome: "Charles Leclerc",
+          pais: "Monaco",
+          equipa: "Scuderia Ferrari",
+          pontos: 8,
+        },
+        {
+          lugar: 9,
+          nome: "Lewis Hamilton🥹",
+          pais: "Reino Unido",
+          equipa: "Scuderia Ferrari",
+          pontos: 9,
+        },
+        {
+          lugar: 7,
+          nome: "Esteban Ocon",
+          pais: "França",
+          equipa: "Haas Ferrari",
+          pontos: 10,
+        },
+        {
+          lugar: 12,
+          nome: "Oliver Bearman",
+          pais: "Reino Unido",
+          equipa: "Haas Ferrari",
+          pontos: 4,
+        },
+        {
+          lugar: 16,
+          nome: "Gabriel Bortoleto",
+          pais: "Brasil",
+          equipa: "Kick Sauber Ferrari",
+          pontos: 0,
+        },
+        {
+          lugar: 11,
+          nome: "Nico Hulkenberg",
+          pais: "Alemanha",
+          equipa: "Kick Sauber Ferrari",
+          pontos: 6,
+        },
+        {
+          lugar: 1,
+          nome: "Lando Norris",
+          pais: "Reino Unido",
+          equipa: "McLaren Mercedes",
+          pontos: 44,
+        },
+        {
+          lugar: 4,
+          nome: "Oscar Piastri",
+          pais: "Australia",
+          equipa: "McLaren Mercedes",
+          pontos: 34,
+        },
+        {
+          lugar: 5,
+          nome: "Kimi Antonilli",
+          pais: "Italia",
+          equipa: "Mercedes",
+          pontos: 22,
+          estilo: "color: #00d2be",
+        },
+        {
+          lugar: 3,
+          nome: "George Russell",
+          pais: "Reino Unido",
+          equipa: "Mercedes",
+          pontos: 35,
+          estilo: "color: #00d2be",
+        },
+        {
+          lugar: 14,
+          nome: "Isack Hadjar",
+          pais: "França",
+          equipa: "RB Honda RBPT",
+          pontos: 0,
+        },
+        {
+          lugar: 13,
+          nome: "Yuki Tsunoda",
+          pais: "Japao",
+          equipa: "RB Honda RBPT",
+          pontos: 3,
+        },
+        {
+          lugar: 2,
+          nome: "Max Versapen",
+          pais: "Holanda",
+          equipa: "Red Bull Racing Honda RBTB",
+          pontos: 36,
+        },
+        {
+          lugar: 17,
+          nome: "Liam Lawson",
+          pais: "Australia",
+          equipa: "Red Bull Racing Honda RBTB",
+          pontos: 0,
+        },
+        {
+          lugar: 6,
+          nome: "Alexander Albon",
+          pais: "Tailandia",
+          equipa: "Williams Mercedes",
+          pontos: 16,
+        },
+        {
+          lugar: 15,
+          nome: "Carlos Sainz",
+          pais: "Espanha",
+          equipa: "Williams Mercedes",
+          pontos: 1,
+        },
+      ].sort((a, b) => a.lugar - b.lugar); // Ordenação por lugar
+
+      // Dados das Equipes
+      const equipes = [
+        { pos: 1, equipe: "McLaren Mercedes", pontos: 78 },
+        { pos: 3, equipe: "Red Bull Racing Honda RBTB", pontos: 36 },
+        {
+          pos: 2,
+          equipe: "Mercedes",
+          pontos: 57,
+          estiloEquipe: "color: #00d2be",
+        },
+        { pos: 4, equipe: "Williams Mercedes", pontos: 17 },
+        { pos: 7, equipe: "Aston Martin Aramco Mercedes", pontos: 10 },
+        { pos: 8, equipe: "Kick Sauber Ferrari", pontos: 6 },
+        { pos: 5, equipe: "Ferrari", pontos: 17 },
+        { pos: 10, equipe: "Renault Alpine", pontos: 0 },
+        { pos: 9, equipe: "RB Honda RBPT", pontos: 3 },
+        { pos: 6, equipe: "Haas Ferrari", pontos: 14 },
+      ].sort((a, b) => a.pos - b.pos); // Ordenação por posição
+
+      function carregarTabelas() {
+        // Popular tabela de pilotos
+        const tbodyPilotos = document.getElementById("corpo-tabela");
+        pilotos.forEach((piloto) => {
+          const tr = document.createElement("tr");
+          if (piloto.estilo) tr.style = piloto.estilo;
+          tr.innerHTML = `
+                    <td>${piloto.lugar}</td>
+                    <td>${piloto.nome}</td>
+                    <td>${piloto.pais}</td>
+                    <td>${piloto.equipa}</td>
+                    <td>${piloto.pontos}</td>
+                `;
+          tbodyPilotos.appendChild(tr);
+        });
+
+        // Popular tabela de equipes (agora ordenada)
+        const tbodyEquipes = document.getElementById("tabela-equipes");
+        equipes.forEach((equipe) => {
+          const tr = document.createElement("tr");
+          tr.innerHTML = `
+                    <td>${equipe.pos}</td>
+                    <td${
+                      equipe.estiloEquipe
+                        ? ` style="${equipe.estiloEquipe}"`
+                        : ""
+                    }>${equipe.equipe}</td>
+                    <td>${equipe.pontos}</td>
+                `;
+          tbodyEquipes.appendChild(tr);
+        });
+      }
+
+      document.addEventListener("DOMContentLoaded", carregarTabelas);
+    </script>
+  </body>
+</html>
